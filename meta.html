@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bingo da economia — Guarde+</title>
+<meta name="description" content="Uma cartela de 30 caixinhas com valores diferentes que somam sua meta. Marque conforme for guardando." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color: var(--accent);">
+        <path d="M4.6 10.2c-1.1-0.9-1.1-2.6 0.1-3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M6 8.4L9.2 7L8.2 11.4Z" fill="currentColor"/>
+        <ellipse cx="11" cy="13" rx="8" ry="6" fill="currentColor"/>
+        <ellipse cx="19" cy="13.6" rx="2.3" ry="1.9" fill="currentColor"/>
+        <circle cx="19.7" cy="13.1" r="0.35" fill="#fff"/>
+        <circle cx="19.7" cy="14.1" r="0.35" fill="#fff"/>
+        <circle cx="14.6" cy="10.6" r="0.7" fill="#fff"/>
+        <rect x="9" y="6.6" width="4" height="1.1" rx="0.55" fill="#fff"/>
+        <rect x="6.4" y="18.2" width="1.8" height="3" rx="0.9" fill="currentColor"/>
+        <rect x="9.6" y="18.6" width="1.8" height="3" rx="0.9" fill="currentColor"/>
+        <rect x="13" y="18.6" width="1.8" height="3" rx="0.9" fill="currentColor"/>
+        <rect x="16.2" y="18.2" width="1.8" height="3" rx="0.9" fill="currentColor"/>
+        <text x="10.8" y="15.4" font-family="Arial, sans-serif" font-size="6.6" font-weight="800" fill="#fff" text-anchor="middle">$</text>
+      </svg>
+      <span>Guarde+</span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="index.html" class="nav__link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 11l9-7 9 7"/>
+          <path d="M5 10v10h14V10"/>
+          <path d="M9 20v-6h6v6"/>
+        </svg>
+        <span>Início</span>
+      </a>
+      <a href="poupe.html" class="nav__link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <ellipse cx="8" cy="15" rx="6" ry="3"/>
+          <path d="M2 15v3c0 1.7 2.7 3 6 3s6-1.3 6-3v-3"/>
+          <ellipse cx="16" cy="9" rx="6" ry="3"/>
+          <path d="M10 9v3c0 1.7 2.7 3 6 3s6-1.3 6-3V9"/>
+        </svg>
+        <span>Poupe no dia a dia</span>
+      </a>
+      <a href="meta.html" class="nav__link" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="8.5"/>
+          <circle cx="12" cy="12" r="4.5"/>
+          <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>Bingo da economia</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section wrap">
+    <div class="section__head">
+      <h1>Bingo da economia</h1>
+      <p>Uma cartela com 30 caixinhas, cada uma com um valor diferente, que juntas somam exatamente sua meta. Marque uma caixinha sempre que guardar aquele valor. Tudo fica salvo automaticamente neste navegador.</p>
+    </div>
+
+    <div class="panel">
+      <div class="bingo-controls">
+        <div class="field">
+          <label for="bingoTarget">Valor total da meta</label>
+          <input type="text" id="bingoTarget" name="bingoTarget" inputmode="numeric" autocomplete="off" placeholder="R$ 0,00" />
+          <span class="field__hint">Ao gerar uma nova cartela, os 30 valores são sorteados e somam exatamente esse total.</span>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="bingoGerar" class="btn">Gerar nova cartela</button>
+          <button type="button" id="bingoLimpar" class="btn btn--ghost">Desmarcar tudo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bingo-progress" aria-live="polite">
+      <div class="gauge">
+        <div class="gauge__track">
+          <div class="gauge__fill" id="bingoGaugeFill"></div>
+        </div>
+        <div class="gauge__meta">
+          <span id="bingoGuardadoValor">Guardado: R$ 0,00</span>
+          <span class="gauge__percent" id="bingoGaugePercent">0%</span>
+          <span id="bingoRestanteValor">Faltam: R$ 0,00</span>
+        </div>
+      </div>
+      <div class="bingo-progress__stats">
+        <span id="bingoContagem">0 de 30 caixinhas</span>
+        <strong id="bingoNota">Clique em uma caixinha sempre que guardar aquele valor.</strong>
+      </div>
+    </div>
+
+    <div class="bingo-grid" id="bingoGrid" role="group" aria-label="Cartela de bingo da economia"></div>
+
+    <p class="bingo-legend">Cada caixinha representa um valor a guardar, sem ordem definida. Ao marcar todas, você terá guardado o valor total da sua meta.</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">Guarde+ — Feito para ajudar você a economizar, sem burocracia e sem conta.</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
